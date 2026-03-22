@@ -4,14 +4,18 @@ __pycache__/
 *.pyc
 
 # Airflow
+logs/
 airflow/logs/
+airflow.db
 airflow/airflow.db
+airflow.cfg
+airflow-webserver.pid
 airflow/airflow-webserver.pid
+unittests.cfg
 airflow/unittests.cfg
 
 # Data (Too large for GH)
-data/raw/
-data/processed/
+data/
 
 # Credentials
 .kaggle/

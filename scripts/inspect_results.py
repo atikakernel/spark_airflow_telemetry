@@ -1,25 +1,19 @@
-from pyspark.sql import SparkSession
+import pandas as pd
+import sys
+import glob
 import os
 
-PROJECT_ROOT = "/home/diegokernel/proyectos/spark_airflow_telemetry"
-OUTPUT_PATH = os.path.join(PROJECT_ROOT, "data/processed/vehicle_telemetry_agg")
+def main():
+    path = "/home/diegokernel/proyectos/spark_airflow_telemetry/data/processed/aggregated_telemetry.parquet"
+    if not os.path.exists(path):
+        print(f"Error: Path {path} does not exist.")
+        return
 
-def inspect_data():
-    spark = SparkSession.builder \
-        .appName("Inspect Processed Data") \
-        .getOrCreate()
-    
-    print(f"Reading processed data from {OUTPUT_PATH}...")
-    df = spark.read.parquet(OUTPUT_PATH)
-    
-    print("\n--- Schema ---")
-    df.printSchema()
-    
-    print("\n--- Sample Data (First 10 rows) ---")
-    df.show(10)
-    
-    print(f"\nTotal rows: {df.count()}")
-    spark.stop()
+    # Parquet files are typically directories in Spark
+    df = pd.read_parquet(path)
+    print("--- Processed Telemetry (First 5 records) ---")
+    print(df.head())
+    print(f"\nTotal records: {len(df)}")
 
 if __name__ == "__main__":
-    inspect_data()
+    main()
