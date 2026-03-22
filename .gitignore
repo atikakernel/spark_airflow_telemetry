@@ -1,0 +1,18 @@
+# Python
+venv/
+__pycache__/
+*.pyc
+
+# Airflow
+airflow/logs/
+airflow/airflow.db
+airflow/airflow-webserver.pid
+airflow/unittests.cfg
+
+# Data (Too large for GH)
+data/raw/
+data/processed/
+
+# Credentials
+.kaggle/
+kaggle.json

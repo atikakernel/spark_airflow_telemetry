@@ -1,0 +1,8 @@
+telemetry_profile:
+  target: dev
+  outputs:
+    dev:
+      type: duckdb
+      path: 'telemetry_data.duckdb'
+      extensions:
+        - parquet
